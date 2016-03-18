@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Document Manager</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    @using Microsoft.AspNet.Identity
+
+</head>
+<body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @*<img src="../../images/ic_subcompany.png" class="icons" />*@
+        <div class=" topbar top-right">
+
+            @Html.Partial("_LoginPartial")
+        </div>
+        <div class="doc-logo">
+            @if (Request.IsAuthenticated)
+            {
+                <a href='@Url.Action("Index", "DocumentInfo")'>
+                    <img src="/../images/0.png" class="img-styl2" />
+                </a>
+            }
+        </div>
+        @*<div class="navbar navbar-inverse navbar-fixed-side navbar-fixed-side-left">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a href='@Url.Action("Index", "Home")'>
+                                <img src="/../images/0.png" class="img-styl" />
+                                </a>
+                                @Html.ActionLink("MailManager", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+                        <div class="navbar-collapse collapse">
+
+
+                            @Html.Partial("_LoginPartial")
+                        </div>
+                    </div>
+                </div>*@
+    }
+    @*<div class="col-md-2 left_"></div>*@
+    
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-ui.js"></script>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @*<script src="~/Scripts/angularjs/angular.js"></script>
+    <script src="~/Scripts/angularjsFile/Company/CompanyApp.js"></script>*@
+    @*<script src="~/Scripts/jquery.validate.js"></script>*@
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/ckeditor/adapters/jquery.js"></script>
+    <div class="container body-content col-md-12" style="min-height:585px">
+        @RenderBody()
+
+
+    </div>
+    <div class="col-md-4"></div>
+    <footer class="col-md-4">
+        <hr />
+
+        <p style=" text-align: center;">&copy;@DateTime.Now.Year<a href="http://danfesolution.com/" target="_blank"><img src="../../images/DanfeLogo.png" class="iconss" />Danfe Solution</a>. All rights reserved.</p>
+    </footer>
+    <div class="col-md-4"></div>
+    @*@{
+
+    if (User.Identity.IsAuthenticated != false)
+    {
+
+        MailManager.MailContext.MailManagerDb db = new MailManager.MailContext.MailManagerDb();
+        var loggedUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+       
+            <div id="dialogue" style="display:none" title="@User.Identity.Name">
+                <img src="~/Images/UploadedImages/@loggedUser.UserImage" class="icon" width="30" height="30" alt="img" />@User.Identity.Name
+                <div class="col-md-8"></div>
+                <a href="@Url.Action("Logout","Account",null)"><i class=" glyphicon glyphicon-log-out" title="Log Out"></i></a>
+                @*<input type="button" onclick="" value="View Details" class="btn btn-default btn-bg col-md-4" id="btnSave" style="margin-top: 10px; margin-bottom:-10px;" />*@
+
+                @*@Html.ActionLink("View Details", "Details", "Account", new { id = loggedUser.UserId }, htmlAttributes: new { title = "Manage" })*@
+
+
+                @*<span class="glyphicon glyphicon-user"></span>*@
+                @*@Html.ActionLink("View Details", "Index", "Role", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+            @*</div>
+       
+    }*@
+   
+
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-ui.js"></script>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/angularjs/angular.js"></script>
+    <script src="~/Scripts/angularjsFile/Company/CompanyApp.js"></script>
+    @*<script src="~/Scripts/jquery.validate.js"></script>*@
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/ckeditor/adapters/jquery.js"></script>
+   
+    <script>
+        function ShowUserDetails(input) {
+            
+            //$('#dialogue').css("display","none");
+            $('#dialogue1').toggleClass("displayToggle");
+           
+            //$('#dialogue').dialog({
+            //    resizable: true,
+            //    //height: 140,
+            //    //modal: true
+            //});
+        }
+    </script>
+    <script>
+        $(document).mouseup(function (e) {
+            var container = $("#dialogue1");
+            var container1 = $("#userDetails");
+            var container2 = $(".logoutButton");
+            if (container.is(e.target) // if the target of the click isn't the container... && container.has(e.target).length === 0 
+               || container1.is(e.target) || container2.is(e.target)) // ... nor a descendant of the container
+            {
+                
+            }
+            else
+            {
+               
+                $('#dialogue1').removeClass("displayToggle");
+                $('#dialogue1').css("display", "none !important");
+                //$('#dialogue1').toggleClass("displayToggle");
+            }
+        });
+
+    </script>
+    <style>
+        .displayToggle {
+            display:block !important;
+            }
+       </style>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

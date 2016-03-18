@@ -1,0 +1,131 @@
+﻿@using Microsoft.AspNet.Identity
+
+@{
+    MailManager.MailContext.MailManagerDb db = new MailManager.MailContext.MailManagerDb();
+    var loggedUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+}
+@if (Request.IsAuthenticated)
+{
+    <div id="test" style="display:none">
+
+    <span>
+        <img src="~/Images/UploadedImages/@loggedUser.UserImage" class="img-rounded" width="30" height="30" alt="img" />
+    </span>
+   <a href="javascript:document.getElementById('logoutForm').submit()"><i class=" glyphicon glyphicon-log-out" title="Log Out"></i></a>
+</div>
+    
+    @*using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right " }))
+    {
+        @Html.AntiForgeryToken()*@
+
+    <ul class="nav navbar-nav navbar-right login">
+
+        @*@if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "DocumentInfo" )*@
+        @if (HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Dashboard")
+        {
+            <li>
+                <span class="glyphicon glyphicon-home"></span><a href='@Url.Action("Index", "DocumentInfo")'>Home</a>
+
+            </li>
+
+        }
+        @*else if (HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Home")
+            {
+                <li>
+                    <span class="glyphicon glyphicon-dashboard"></span>@Html.ActionLink("Dashboard", "Dashboard", "Account")
+
+                </li>
+
+            }*@
+
+        else
+        {
+            <li>
+                <span class="glyphicon glyphicon-home"></span><a href='@Url.Action("Index", "DocumentInfo")'>Home</a>
+
+            </li>
+            <li>
+                <span class="glyphicon glyphicon-dashboard"></span>@Html.ActionLink("Dashboard", "Dashboard", "Account")
+
+            </li>
+        }
+
+      
+
+        @*<li>
+            <span>
+                <img src="~/Images/UploadedImages/@loggedUser.UserImage" class="img-rounded" width="30" height="30" alt="img" />
+            </span>
+            <li />*@
+        <li>
+           
+            @*<button id="userDetails"  onclick="ShowUserDetails(this)" type="button">*@
+                <img src="~/Images/UploadedImages/@loggedUser.UserImage" onclick="ShowUserDetails(this)" id="userDetails" class="icon" style="border-radius:50%" width="35" height="35" alt="img" />
+            @*</button>*@
+        </li>
+        @*@User.Identity.GetUserName()*@
+            @*<span class="glyphicon glyphicon-user"></span>*@
+            @*@Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Role", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+        
+           
+
+    </ul>
+   
+
+    //if (User.Identity.IsAuthenticated != false)
+    //{
+
+         //db = new MailManager.MailContext.MailManagerDb();
+         //loggedUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+            
+            <div id="dialogue1" style="display:none" >
+                <div class="gb_ab"></div>
+                <div class="imgLogin">
+                    <img src="~/Images/UploadedImages/@loggedUser.UserImage" class="icon" width="75" height="75" alt="img" />
+                    <span>@User.Identity.Name</span>
+                    </div>
+                <div class="nameLogin">
+                   <div>@loggedUser.FullName</div>
+                    <div>@loggedUser.Email</div>
+                </div>
+                <div class="mainBottom">
+                    <div class="leftLogin">
+                        @Html.ActionLink("View Details", "Details", "Account", new { id = loggedUser.UserId }, htmlAttributes: new { title = "Manage" })
+                    </div>
+                    <div class="rightLogin">
+@Html.ActionLink(" ", "Logout", "Account",null, new { @class = "glyphicon glyphicon-log-out logoutButton"})
+                        @*<a href="@Url.Action("Logout","Account")"><i class=" glyphicon glyphicon-log-out" title="Log Out"></i></a>*@
+                    </div>
+                </div>
+                    @*<input type="button" onclick="" value="View Details" class="btn btn-default btn-bg col-md-4" id="btnSave" style="margin-top: 10px; margin-bottom:-10px;" />*@
+
+
+
+
+                    @*<span class="glyphicon glyphicon-user"></span>*@
+                    @*@Html.ActionLink("View Details", "Index", "Role", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+                </div>
+       
+    //}
+   
+    //if ((HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "DocumentInfo" && HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Edit") || HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() != "DocumentInfo")
+    //   {
+            <div class="topButtons">
+        @Html.ActionLink("Compose", "Create", "DocumentInfo", null, new { @class = "btn btn-default  btn-bg" })
+        @Html.ActionLink("Index", "Index", "DocumentInfo", null, new { @class = "btn btn-default  btn-bg" })
+    </div>
+    @*   }*@
+     
+    //}
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+
+        <li>@Html.ActionLink("Register", "Index", "Role", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li> @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+
+
+

@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MailManagerModelStoreContainer" CdmEntityContainer="MailManagerEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="MailManagerModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="InsertedBy" ColumnName="InsertedBy" />
+          <ScalarProperty Name="InsertedOn" ColumnName="InsertedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Company_Info">
+      <EntityTypeMapping TypeName="MailManagerModel.Company_Info">
+        <MappingFragment StoreEntitySet="Company_Info">
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="POBOX" ColumnName="POBOX" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Registered_Address" ColumnName="Registered_Address" />
+          <ScalarProperty Name="PANNo" ColumnName="PANNo" />
+          <ScalarProperty Name="Telephone1" ColumnName="Telephone1" />
+          <ScalarProperty Name="Slogan" ColumnName="Slogan" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="CompanyLogo" ColumnName="CompanyLogo" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdateOn" ColumnName="UpdateOn" />
+          <ScalarProperty Name="DefaultPrinter" ColumnName="DefaultPrinter" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="VoucherIncrementType" ColumnName="VoucherIncrementType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="MailManagerModel.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="Invoice_date" ColumnName="Invoice_date" />
+          <ScalarProperty Name="Invoice_miti" ColumnName="Invoice_miti" />
+          <ScalarProperty Name="R_CompanyName" ColumnName="R_CompanyName" />
+          <ScalarProperty Name="R_Address" ColumnName="R_Address" />
+          <ScalarProperty Name="R_DesignatedPerson1" ColumnName="R_DesignatedPerson1" />
+          <ScalarProperty Name="R_Designation1" ColumnName="R_Designation1" />
+          <ScalarProperty Name="R_EmailId" ColumnName="R_EmailId" />
+          <ScalarProperty Name="R_PhoneNo" ColumnName="R_PhoneNo" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="InsertedBy" ColumnName="InsertedBy" />
+          <ScalarProperty Name="InsertedOn" ColumnName="InsertedOn" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateOn" ColumnName="UpdateOn" />
+          <ScalarProperty Name="SubCompanyId" ColumnName="SubCompanyId" />
+          <ScalarProperty Name="R_City" ColumnName="R_City" />
+          <ScalarProperty Name="R_Country" ColumnName="R_Country" />
+          <ScalarProperty Name="R_CompanyName1" ColumnName="R_CompanyName1" />
+          <ScalarProperty Name="R_DesignatedPerson2" ColumnName="R_DesignatedPerson2" />
+          <ScalarProperty Name="R_Designation2" ColumnName="R_Designation2" />
+          <ScalarProperty Name="R_FaxNo" ColumnName="R_FaxNo" />
+          <ScalarProperty Name="R_Address1" ColumnName="R_Address1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentContents">
+      <EntityTypeMapping TypeName="MailManagerModel.DocumentContent">
+        <MappingFragment StoreEntitySet="DocumentContent">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HeaderId" ColumnName="HeaderId" />
+          <ScalarProperty Name="HeaderValue" ColumnName="HeaderValue" />
+          <ScalarProperty Name="DocMasterId" ColumnName="DocMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentMasters">
+      <EntityTypeMapping TypeName="MailManagerModel.DocumentMaster">
+        <MappingFragment StoreEntitySet="DocumentMaster">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="SubCompanyId" ColumnName="SubCompanyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HeaderContents">
+      <EntityTypeMapping TypeName="MailManagerModel.HeaderContent">
+        <MappingFragment StoreEntitySet="HeaderContent">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HeaderName" ColumnName="HeaderName" />
+          <ScalarProperty Name="SequenceNo" ColumnName="SequenceNo" />
+          <ScalarProperty Name="Align" ColumnName="Align" />
+          <ScalarProperty Name="IsDisplay" ColumnName="IsDisplay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sub_CompanyInfo">
+      <EntityTypeMapping TypeName="MailManagerModel.Sub_CompanyInfo">
+        <MappingFragment StoreEntitySet="Sub_CompanyInfo">
+          <ScalarProperty Name="SCID" ColumnName="SCID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="InsertedBy" ColumnName="InsertedBy" />
+          <ScalarProperty Name="InsertedOn" ColumnName="InsertedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Role">
+      <EntityTypeMapping TypeName="MailManagerModel.tbl_Role">
+        <MappingFragment StoreEntitySet="tbl_Role">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MailManagerModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersInRoles">
+      <EntityTypeMapping TypeName="MailManagerModel.UsersInRole">
+        <MappingFragment StoreEntitySet="UsersInRoles">
+          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoucherConfigurations">
+      <EntityTypeMapping TypeName="MailManagerModel.VoucherConfiguration">
+        <MappingFragment StoreEntitySet="VoucherConfiguration">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StartNo" ColumnName="StartNo" />
+          <ScalarProperty Name="EndNo" ColumnName="EndNo" />
+          <ScalarProperty Name="BodyLength" ColumnName="BodyLength" />
+          <ScalarProperty Name="CurrentNo" ColumnName="CurrentNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoucherNumberings">
+      <EntityTypeMapping TypeName="MailManagerModel.VoucherNumbering">
+        <MappingFragment StoreEntitySet="VoucherNumbering">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Style" ColumnName="Style" />
+          <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+          <ScalarProperty Name="Suffix" ColumnName="Suffix" />
+          <ScalarProperty Name="BodyLength" ColumnName="BodyLength" />
+          <ScalarProperty Name="TotalLength" ColumnName="TotalLength" />
+          <ScalarProperty Name="StartNo" ColumnName="StartNo" />
+          <ScalarProperty Name="EndNo" ColumnName="EndNo" />
+          <ScalarProperty Name="CurrentNo" ColumnName="CurrentNo" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+          <ScalarProperty Name="IsPrefillzero" ColumnName="IsPrefillzero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

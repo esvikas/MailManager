@@ -1,0 +1,273 @@
+﻿@model MailManager.Models.VoucherNumberingModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+<h1 class="main-hdr">Voucher</h1>
+
+
+<div class="col-md-2 abc">
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default back-btn btn-bg" })
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal  form-group form-bg col-md-10 voucherEdit">
+    <h3>Edit</h3>
+
+        
+  
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.CreateDate)
+        @Html.HiddenFor(model => model.CreatedBy)
+        @Html.HiddenFor(model => model.CurrentNo)
+
+        <div class="form-group">
+            @Html.Label("Type", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CategoryId",null, "Select")
+                <span class="bar"></span>
+                @Html.ValidationMessageFor(model => model.CategoryId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description)
+                <span class="bar" style="width:400px;"></span>
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <table class="tableDivVoucher">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Prefix, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Prefix)
+                            <span class="bar"></span>
+                            @Html.ValidationMessageFor(model => model.Prefix)
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Suffix, new { @class = "control-label col-md-4 " })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Suffix)
+                            <span class="bar"></span>
+                            @Html.ValidationMessageFor(model => model.Suffix)
+                        </div>
+                    </div>
+                </td>
+                @if (ViewBag.VoucherType == 0)
+                {
+                <td>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StartNo, new { @class = "control-label col-md-3" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.StartNo)
+                            <span class="bar"></span>
+                            @Html.ValidationMessageFor(model => model.StartNo)
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EndNo, new { @class = "control-label col-md-3" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.EndNo)
+                            <span class="bar"></span>
+                            @Html.ValidationMessageFor(model => model.EndNo)
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BodyLength, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.BodyLength)
+                            <span class="bar"></span>
+                            @Html.ValidationMessageFor(model => model.BodyLength)
+                        </div>
+                    </div>
+                </td>
+                }
+                else 
+                {
+                       <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StartNo, new { @class = "control-label col-md-3" })
+                        <div class="col-md-8">
+                            <input type="text" name="StartNo" id="StartNo" value='@ViewBag.StartNo' class="input-disabled" readonly />
+                            
+                            @Html.ValidationMessageFor(model => model.StartNo)
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EndNo, new { @class = "control-label col-md-3" })
+                        <div class="col-md-8">
+                            <input type="text" name="EndNo" id="EndNo" value='@ViewBag.EndNo' class="input-disabled" readonly />
+                            
+                            @Html.ValidationMessageFor(model => model.EndNo)
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BodyLength, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            <input type="text" id="BodyLength" name="BodyLength" value='@ViewBag.BodyLength' readonly class="input-disabled" /> 
+                            
+                            @Html.ValidationMessageFor(model => model.BodyLength)
+                        </div>
+                    </div>
+                </td>
+                }
+            </tr>
+        </table>
+
+        <div class="form-group sampleVN">
+            <div>
+                <label title="Sample Voucher Number" class="control-label col-md-2">Sample Voucher Number</label>
+                <div class="col-md-4">
+                    <input type="text" id="txtSample" readonly />
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-10"></div>
+                <input type="submit" value="Save" name="Save" class="btn btn-default btn-bg col-md-2" />
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+@*<script src="https://code.jquery.com/jquery-1.10.2.js"></script>*@
+<script>
+    var sampleVoucher;
+    $(document).ready(function () {
+        FillSampleVoucher(sampleVoucher);
+        $('#txtSample').attr('readonly', true);
+        $('#txtSample').addClass('input-disabled');
+        //debugger;
+        //$("span").text(i += 1);
+        //sampleVoucher = $("#Prefix").val() + '-' + $("#Suffix").val() + '-' + $("#StartNo").val();
+        //$("#txtSample").val(sampleVoucher);
+    });
+    $("#EndNo").keyup(function () {
+        debugger;
+        //$("span").text(i += 1);
+        FillSampleVoucher(sampleVoucher);
+    });
+
+    $("#Prefix").keyup(function () {
+        debugger;
+        //$("span").text(i += 1);
+        FillSampleVoucher(sampleVoucher);
+    });
+    $("#Suffix").keyup(function () {
+        debugger;
+        //$("span").text(i += 1);
+        FillSampleVoucher(sampleVoucher);
+    });
+    $("#StartNo").keyup(function () {
+        debugger;
+        //$("span").text(i += 1);
+        FillSampleVoucher(sampleVoucher);
+    });
+
+    $("#BodyLength").keyup(function (e) {
+        debugger;
+        //$("span").text(i += 1);
+        FillSampleVoucher(sampleVoucher);
+        var endNo = $('#EndNo').val();
+        var endCount = endNo.length;
+        var bodyLength = $("#BodyLength").val();
+        if (e.keyCode == 8 || e.keyCode == 9) { }
+        else {
+            if (bodyLength < endCount)
+            {
+                $("input[name='Save']").prop("type", "button");
+                alert("Invalid body length. Body length should be greater than or equal to end no digits!");
+            }
+            else {
+                $("input[name='Save']").prop("type", "submit");
+            }
+        }
+    });
+
+    $("#BodyLength").keydown(function (e) {
+        if ($("#BodyLength").length > 1)
+            alert("BodyLength should be between 1 to 9");
+    });
+    //function for key press
+    function FillSampleVoucher(sampleVoucher) {
+        debugger;
+        sampleVoucher = "";
+        if ($("#Prefix").val() != "")
+        {
+            sampleVoucher = $("#Prefix").val() + '-';
+        }
+        if ($("#Suffix").val() != "")
+        {
+            sampleVoucher += $("#Suffix").val() + '-';
+        }
+        var i = $("#StartNo").val().length;
+        var j = parseInt($("#BodyLength").val());
+        var k = j - i;
+        var l = 0;
+        var refNo3 = "";
+        for (l = 0; l < k; l++) {
+            refNo3 += "0";
+        }
+        debugger;
+        refNo3 += $("#StartNo").val();
+        //sampleVoucher += $("#StartNo").val();
+        sampleVoucher += refNo3;
+        $("#txtSample").val(sampleVoucher);
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        //debugger;
+        $.getJSON('@Url.Action("GetVoucherType", "Voucher")', function (result) {
+            debugger;
+            if (result.result == 1 || result.result == "AutoIncrement") {
+                debugger;
+                $('#BodyLength').attr('readonly', true);
+                $('#BodyLength').addClass('input-disabled');
+
+
+                $('#StartNo').attr('readonly', true);
+                $('#StartNo').addClass('input-disabled');
+
+                $('#EndNo').attr('readonly', true);
+                $('#EndNo').addClass('input-disabled');
+
+            }
+         
+        });
+
+
+      
+    });
+</script>
+<style>
+    .input-disabled {
+        opacity:0.6;
+    }
+</style>
+
+

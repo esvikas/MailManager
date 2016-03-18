@@ -1,0 +1,13 @@
+D:\Projects\DocumentManager\MailManager\MailContext\bin\Debug\MailContext.dll
+D:\Projects\DocumentManager\MailManager\MailContext\bin\Debug\MailContext.pdb
+D:\Projects\DocumentManager\MailManager\MailContext\bin\Debug\EntityFramework.dll
+D:\Projects\DocumentManager\MailManager\MailContext\bin\Debug\System.Data.SQLite.dll
+D:\Projects\DocumentManager\MailManager\MailContext\bin\Debug\EntityFramework.xml
+D:\Projects\DocumentManager\MailManager\MailContext\bin\Debug\System.Data.SQLite.xml
+D:\Projects\DocumentManager\MailManager\MailContext\obj\Debug\MailContext.dll
+D:\Projects\DocumentManager\MailManager\MailContext\obj\Debug\MailContext.pdb
+D:\Projects\DocumentManager\MailManager\MailContext\bin\Debug\MailContext.dll.config
+D:\Projects\DocumentManager\MailManager\MailContext\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\DocumentManager\MailManager\MailContext\bin\Debug\System.Data.SQLite.EF6.dll
+D:\Projects\DocumentManager\MailManager\MailContext\bin\Debug\System.Data.SQLite.Linq.dll
+D:\Projects\DocumentManager\MailManager\MailContext\bin\Debug\EntityFramework.SqlServer.xml

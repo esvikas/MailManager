@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MailManagerModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Code" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="InsertedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="InsertedOn" Type="DateTime" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedOn" Type="DateTime" />
+    <NavigationProperty Name="VoucherNumberings" Relationship="Self.FK_VoucherNumbering_0_0" FromRole="Category" ToRole="VoucherNumbering" />
+  </EntityType>
+  <EntityType Name="VoucherConfiguration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartNo" Type="Int32" />
+    <Property Name="EndNo" Type="Int32" />
+    <Property Name="BodyLength" Type="Int32" />
+    <Property Name="CurrentNo" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VoucherNumbering">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryId" Type="Int64" />
+    <Property Name="Description" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Style" Type="Int32" />
+    <Property Name="Prefix" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Suffix" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="BodyLength" Type="Int32" />
+    <Property Name="TotalLength" Type="Int32" />
+    <Property Name="StartNo" Type="Int32" />
+    <Property Name="EndNo" Type="Int32" />
+    <Property Name="CurrentNo" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" />
+    <Property Name="LastUpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="LastUpdateDate" Type="DateTime" />
+    <Property Name="IsPrefillzero" Type="Boolean" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_VoucherNumbering_0_0" FromRole="VoucherNumbering" ToRole="Category" />
+  </EntityType>
+  <Association Name="FK_VoucherNumbering_0_0">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="VoucherNumbering" Type="Self.VoucherNumbering" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="VoucherNumbering">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MailManagerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="VoucherConfigurations" EntityType="Self.VoucherConfiguration" />
+    <EntitySet Name="VoucherNumberings" EntityType="Self.VoucherNumbering" />
+    <AssociationSet Name="FK_VoucherNumbering_0_0" Association="Self.FK_VoucherNumbering_0_0">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="VoucherNumbering" EntitySet="VoucherNumberings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

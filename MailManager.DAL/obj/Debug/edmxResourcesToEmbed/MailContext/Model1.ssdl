@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MailManagerModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;D:\Projects\DocumentManager\MailManager\MailManager\App_Data\MailManager.sqlite&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="128" />
+    <Property Name="Description" Type="varchar" MaxLength="256" />
+    <Property Name="Code" Type="varchar" MaxLength="128" />
+    <Property Name="InsertedBy" Type="varchar" MaxLength="128" />
+    <Property Name="InsertedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="varchar" MaxLength="128" />
+    <Property Name="UpdatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Company_Info">
+    <Key>
+      <PropertyRef Name="CID" />
+    </Key>
+    <Property Name="CID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="512" />
+    <Property Name="Address" Type="varchar" MaxLength="512" />
+    <Property Name="Telephone" Type="varchar" MaxLength="100" />
+    <Property Name="Address1" Type="varchar" MaxLength="512" />
+    <Property Name="POBOX" Type="varchar" MaxLength="512" />
+    <Property Name="FaxNo" Type="varchar" MaxLength="50" />
+    <Property Name="Registered_Address" Type="varchar" MaxLength="512" />
+    <Property Name="PANNo" Type="varchar" MaxLength="128" />
+    <Property Name="Telephone1" Type="varchar" MaxLength="50" />
+    <Property Name="Slogan" Type="varchar" MaxLength="512" />
+    <Property Name="Country" Type="varchar" MaxLength="128" />
+    <Property Name="CompanyLogo" Type="varchar" MaxLength="256" />
+    <Property Name="Website" Type="varchar" MaxLength="256" />
+    <Property Name="Code" Type="varchar" MaxLength="128" />
+    <Property Name="UpdatedBy" Type="varchar" MaxLength="128" />
+    <Property Name="UpdateOn" Type="datetime" />
+    <Property Name="DefaultPrinter" Type="varchar" MaxLength="512" />
+    <Property Name="City" Type="varchar" MaxLength="256" />
+    <Property Name="Email" Type="varchar" MaxLength="512" />
+    <Property Name="VoucherIncrementType" Type="int" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="DocumentID" />
+    </Key>
+    <Property Name="DocumentID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryId" Type="integer" />
+    <Property Name="InvoiceNo" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Invoice_date" Type="datetime" />
+    <Property Name="Invoice_miti" Type="varchar" MaxLength="128" />
+    <Property Name="R_CompanyName" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="R_Address" Type="varchar" MaxLength="512" />
+    <Property Name="R_DesignatedPerson1" Type="varchar" MaxLength="128" />
+    <Property Name="R_Designation1" Type="varchar" MaxLength="128" />
+    <Property Name="R_EmailId" Type="varchar" MaxLength="128" />
+    <Property Name="R_PhoneNo" Type="varchar" MaxLength="128" />
+    <Property Name="Subject" Type="varchar" MaxLength="512" />
+    <Property Name="Message" Type="nvarchar" MaxLength="9999" />
+    <Property Name="InsertedBy" Type="varchar" MaxLength="128" />
+    <Property Name="InsertedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="varchar" MaxLength="128" />
+    <Property Name="UpdateOn" Type="datetime" />
+    <Property Name="SubCompanyId" Type="integer" />
+    <Property Name="R_City" Type="varchar" MaxLength="256" />
+    <Property Name="R_Country" Type="varchar" MaxLength="256" />
+    <Property Name="R_CompanyName1" Type="varchar" MaxLength="512" />
+    <Property Name="R_DesignatedPerson2" Type="varchar" MaxLength="512" />
+    <Property Name="R_Designation2" Type="varchar" MaxLength="256" />
+    <Property Name="R_FaxNo" Type="varchar" MaxLength="50" />
+    <Property Name="R_Address1" Type="varchar" MaxLength="512" />
+  </EntityType>
+  <EntityType Name="DocumentContent">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HeaderId" Type="integer" Nullable="false" />
+    <Property Name="HeaderValue" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="DocMasterId" Type="integer" />
+  </EntityType>
+  <EntityType Name="DocumentMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="512" />
+    <Property Name="Message" Type="nvarchar" MaxLength="9999" />
+    <Property Name="SubCompanyId" Type="integer" />
+  </EntityType>
+  <EntityType Name="HeaderContent">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HeaderName" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="SequenceNo" Type="integer" Nullable="false" />
+    <Property Name="Align" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsDisplay" Type="bit" />
+  </EntityType>
+  <EntityType Name="Sub_CompanyInfo">
+    <Key>
+      <PropertyRef Name="SCID" />
+    </Key>
+    <Property Name="SCID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="512" />
+    <Property Name="Code" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="InsertedBy" Type="varchar" MaxLength="128" />
+    <Property Name="InsertedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="varchar" MaxLength="128" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="CompanyId" Type="integer" />
+  </EntityType>
+  <EntityType Name="tbl_Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Role" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="128" />
+    <Property Name="Password" Type="varchar" MaxLength="512" />
+    <Property Name="Email" Type="varchar" MaxLength="256" />
+    <Property Name="Designation" Type="varchar" MaxLength="256" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+    <Property Name="FullName" Type="varchar" MaxLength="256" />
+    <Property Name="UserImage" Type="varchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserRoleID" />
+    </Key>
+    <Property Name="UserRoleID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="integer" />
+    <Property Name="UserId" Type="integer" />
+  </EntityType>
+  <EntityType Name="VoucherConfiguration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartNo" Type="int" />
+    <Property Name="EndNo" Type="int" />
+    <Property Name="BodyLength" Type="int" />
+    <Property Name="CurrentNo" Type="int" />
+  </EntityType>
+  <EntityType Name="VoucherNumbering">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryId" Type="integer" />
+    <Property Name="Description" Type="nvarchar" MaxLength="64" />
+    <Property Name="Style" Type="int" />
+    <Property Name="Prefix" Type="nvarchar" MaxLength="8" />
+    <Property Name="Suffix" Type="nvarchar" MaxLength="8" />
+    <Property Name="BodyLength" Type="int" />
+    <Property Name="TotalLength" Type="int" />
+    <Property Name="StartNo" Type="int" />
+    <Property Name="EndNo" Type="int" />
+    <Property Name="CurrentNo" Type="int" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="256" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="LastUpdatedBy" Type="varchar" MaxLength="256" />
+    <Property Name="LastUpdateDate" Type="datetime" />
+    <Property Name="IsPrefillzero" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Document_0_0">
+    <End Role="Sub_CompanyInfo" Type="Self.Sub_CompanyInfo" Multiplicity="0..1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sub_CompanyInfo">
+        <PropertyRef Name="SCID" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="SubCompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_1_0">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentContent_0_0">
+    <End Role="HeaderContent" Type="Self.HeaderContent" Multiplicity="1" />
+    <End Role="DocumentContent" Type="Self.DocumentContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HeaderContent">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DocumentContent">
+        <PropertyRef Name="HeaderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentContent_1_0">
+    <End Role="DocumentMaster" Type="Self.DocumentMaster" Multiplicity="0..1" />
+    <End Role="DocumentContent" Type="Self.DocumentContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DocumentContent">
+        <PropertyRef Name="DocMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentContent_2_0">
+    <End Role="HeaderContent" Type="Self.HeaderContent" Multiplicity="1" />
+    <End Role="DocumentContent" Type="Self.DocumentContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HeaderContent">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DocumentContent">
+        <PropertyRef Name="HeaderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentMaster_0_0">
+    <End Role="Sub_CompanyInfo" Type="Self.Sub_CompanyInfo" Multiplicity="0..1" />
+    <End Role="DocumentMaster" Type="Self.DocumentMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sub_CompanyInfo">
+        <PropertyRef Name="SCID" />
+      </Principal>
+      <Dependent Role="DocumentMaster">
+        <PropertyRef Name="SubCompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sub_CompanyInfo_0_0">
+    <End Role="Company_Info" Type="Self.Company_Info" Multiplicity="0..1" />
+    <End Role="Sub_CompanyInfo" Type="Self.Sub_CompanyInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company_Info">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="Sub_CompanyInfo">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersInRoles_0_0">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="UsersInRoles" Type="Self.UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UsersInRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersInRoles_1_0">
+    <End Role="tbl_Role" Type="Self.tbl_Role" Multiplicity="0..1" />
+    <End Role="UsersInRoles" Type="Self.UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VoucherNumbering_0_0">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="VoucherNumbering" Type="Self.VoucherNumbering" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="VoucherNumbering">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MailManagerModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" store:Type="Tables" />
+    <EntitySet Name="Company_Info" EntityType="Self.Company_Info" store:Type="Tables" />
+    <EntitySet Name="Document" EntityType="Self.Document" store:Type="Tables" />
+    <EntitySet Name="DocumentContent" EntityType="Self.DocumentContent" store:Type="Tables" />
+    <EntitySet Name="DocumentMaster" EntityType="Self.DocumentMaster" store:Type="Tables" />
+    <EntitySet Name="HeaderContent" EntityType="Self.HeaderContent" store:Type="Tables" />
+    <EntitySet Name="Sub_CompanyInfo" EntityType="Self.Sub_CompanyInfo" store:Type="Tables" />
+    <EntitySet Name="tbl_Role" EntityType="Self.tbl_Role" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" />
+    <EntitySet Name="UsersInRoles" EntityType="Self.UsersInRoles" store:Type="Tables" />
+    <EntitySet Name="VoucherConfiguration" EntityType="Self.VoucherConfiguration" store:Type="Tables" />
+    <EntitySet Name="VoucherNumbering" EntityType="Self.VoucherNumbering" store:Type="Tables" />
+    <AssociationSet Name="FK_Document_0_0" Association="Self.FK_Document_0_0">
+      <End Role="Sub_CompanyInfo" EntitySet="Sub_CompanyInfo" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_1_0" Association="Self.FK_Document_1_0">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentContent_0_0" Association="Self.FK_DocumentContent_0_0">
+      <End Role="HeaderContent" EntitySet="HeaderContent" />
+      <End Role="DocumentContent" EntitySet="DocumentContent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentContent_1_0" Association="Self.FK_DocumentContent_1_0">
+      <End Role="DocumentMaster" EntitySet="DocumentMaster" />
+      <End Role="DocumentContent" EntitySet="DocumentContent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentContent_2_0" Association="Self.FK_DocumentContent_2_0">
+      <End Role="HeaderContent" EntitySet="HeaderContent" />
+      <End Role="DocumentContent" EntitySet="DocumentContent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentMaster_0_0" Association="Self.FK_DocumentMaster_0_0">
+      <End Role="Sub_CompanyInfo" EntitySet="Sub_CompanyInfo" />
+      <End Role="DocumentMaster" EntitySet="DocumentMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sub_CompanyInfo_0_0" Association="Self.FK_Sub_CompanyInfo_0_0">
+      <End Role="Company_Info" EntitySet="Company_Info" />
+      <End Role="Sub_CompanyInfo" EntitySet="Sub_CompanyInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersInRoles_0_0" Association="Self.FK_UsersInRoles_0_0">
+      <End Role="User" EntitySet="User" />
+      <End Role="UsersInRoles" EntitySet="UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersInRoles_1_0" Association="Self.FK_UsersInRoles_1_0">
+      <End Role="tbl_Role" EntitySet="tbl_Role" />
+      <End Role="UsersInRoles" EntitySet="UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VoucherNumbering_0_0" Association="Self.FK_VoucherNumbering_0_0">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="VoucherNumbering" EntitySet="VoucherNumbering" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MailManagerModel1.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=D:\Projects\DocumentManager\MailManager\MailManager\App_Data\MailManager.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="128" />
+          <Property Name="Description" Type="varchar" MaxLength="256" />
+          <Property Name="Code" Type="varchar" MaxLength="128" />
+          <Property Name="InsertedBy" Type="varchar" MaxLength="128" />
+          <Property Name="InsertedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="128" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VoucherConfiguration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartNo" Type="int" />
+          <Property Name="EndNo" Type="int" />
+          <Property Name="BodyLength" Type="int" />
+          <Property Name="CurrentNo" Type="int" />
+        </EntityType>
+        <EntityType Name="VoucherNumbering">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="integer" />
+          <Property Name="Description" Type="nvarchar" MaxLength="64" />
+          <Property Name="Style" Type="int" />
+          <Property Name="Prefix" Type="nvarchar" MaxLength="8" />
+          <Property Name="Suffix" Type="nvarchar" MaxLength="8" />
+          <Property Name="BodyLength" Type="int" />
+          <Property Name="TotalLength" Type="int" />
+          <Property Name="StartNo" Type="int" />
+          <Property Name="EndNo" Type="int" />
+          <Property Name="CurrentNo" Type="int" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="256" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="LastUpdatedBy" Type="varchar" MaxLength="256" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="IsPrefillzero" Type="bit" />
+        </EntityType>
+        <Association Name="FK_VoucherNumbering_0_0">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="VoucherNumbering" Type="Self.VoucherNumbering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="VoucherNumbering">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MailManagerModel1StoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" store:Type="Tables" />
+          <EntitySet Name="VoucherConfiguration" EntityType="Self.VoucherConfiguration" store:Type="Tables" />
+          <EntitySet Name="VoucherNumbering" EntityType="Self.VoucherNumbering" store:Type="Tables" />
+          <AssociationSet Name="FK_VoucherNumbering_0_0" Association="Self.FK_VoucherNumbering_0_0">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="VoucherNumbering" EntitySet="VoucherNumbering" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MailManagerModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedOn" Type="DateTime" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedOn" Type="DateTime" />
+          <NavigationProperty Name="VoucherNumberings" Relationship="Self.FK_VoucherNumbering_0_0" FromRole="Category" ToRole="VoucherNumbering" />
+        </EntityType>
+        <EntityType Name="VoucherConfiguration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartNo" Type="Int32" />
+          <Property Name="EndNo" Type="Int32" />
+          <Property Name="BodyLength" Type="Int32" />
+          <Property Name="CurrentNo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VoucherNumbering">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int64" />
+          <Property Name="Description" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Style" Type="Int32" />
+          <Property Name="Prefix" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Suffix" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="BodyLength" Type="Int32" />
+          <Property Name="TotalLength" Type="Int32" />
+          <Property Name="StartNo" Type="Int32" />
+          <Property Name="EndNo" Type="Int32" />
+          <Property Name="CurrentNo" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" />
+          <Property Name="LastUpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateDate" Type="DateTime" />
+          <Property Name="IsPrefillzero" Type="Boolean" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_VoucherNumbering_0_0" FromRole="VoucherNumbering" ToRole="Category" />
+        </EntityType>
+        <Association Name="FK_VoucherNumbering_0_0">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="VoucherNumbering" Type="Self.VoucherNumbering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="VoucherNumbering">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MailManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="VoucherConfigurations" EntityType="Self.VoucherConfiguration" />
+          <EntitySet Name="VoucherNumberings" EntityType="Self.VoucherNumbering" />
+          <AssociationSet Name="FK_VoucherNumbering_0_0" Association="Self.FK_VoucherNumbering_0_0">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="VoucherNumbering" EntitySet="VoucherNumberings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MailManagerModel1StoreContainer" CdmEntityContainer="MailManagerEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="MailManagerModel1.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="InsertedBy" ColumnName="InsertedBy" />
+                <ScalarProperty Name="InsertedOn" ColumnName="InsertedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoucherConfigurations">
+            <EntityTypeMapping TypeName="MailManagerModel1.VoucherConfiguration">
+              <MappingFragment StoreEntitySet="VoucherConfiguration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StartNo" ColumnName="StartNo" />
+                <ScalarProperty Name="EndNo" ColumnName="EndNo" />
+                <ScalarProperty Name="BodyLength" ColumnName="BodyLength" />
+                <ScalarProperty Name="CurrentNo" ColumnName="CurrentNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoucherNumberings">
+            <EntityTypeMapping TypeName="MailManagerModel1.VoucherNumbering">
+              <MappingFragment StoreEntitySet="VoucherNumbering">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="Suffix" ColumnName="Suffix" />
+                <ScalarProperty Name="BodyLength" ColumnName="BodyLength" />
+                <ScalarProperty Name="TotalLength" ColumnName="TotalLength" />
+                <ScalarProperty Name="StartNo" ColumnName="StartNo" />
+                <ScalarProperty Name="EndNo" ColumnName="EndNo" />
+                <ScalarProperty Name="CurrentNo" ColumnName="CurrentNo" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="IsPrefillzero" ColumnName="IsPrefillzero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

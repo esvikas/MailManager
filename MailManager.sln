@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailManager.DAL", "MailManager.DAL\MailManager.DAL.csproj", "{98C84308-60BB-46DF-8D20-273875FC7224}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailManager.Website", "MailManager.Website\MailManager.Website.csproj", "{31952AC7-CD16-4F9A-8416-8ED98AFF908B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98C84308-60BB-46DF-8D20-273875FC7224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C84308-60BB-46DF-8D20-273875FC7224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98C84308-60BB-46DF-8D20-273875FC7224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98C84308-60BB-46DF-8D20-273875FC7224}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31952AC7-CD16-4F9A-8416-8ED98AFF908B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31952AC7-CD16-4F9A-8416-8ED98AFF908B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31952AC7-CD16-4F9A-8416-8ED98AFF908B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31952AC7-CD16-4F9A-8416-8ED98AFF908B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

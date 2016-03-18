@@ -1,0 +1,214 @@
+﻿@model IEnumerable<MailManager.Models.VoucherNumberingModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .not-active {
+        pointer-events: none;
+        cursor: default;
+        background-color: rgba(128, 128, 128, 0.5);
+        border-bottom: 2px solid rgba(66, 139, 202, 0.25);
+    }
+</style>
+
+<h1 class="main-hdr2"> Document Design</h1>
+@if (TempData["message"] != null)
+{
+    <div id="dialog" style="display:none">
+        <p>@Html.Encode(TempData["message"])</p>
+        <div class="col-md-4"></div>
+        <input type="button" value="OK" id="btnOk" class="btn btn-default btn-bg col-md-4" style="margin-top: 10px; margin-bottom:-10px;" />
+    </div>
+}
+
+<div id="dialog1" title="Confirm-Box" style="display:none">
+    <label>Are you sure to delete this document styling?</label>
+    <div class="col-md-4"></div>
+    <input type="button" value="Yes" id="btnYes" class="btn btn-default btn-bg col-md-3" style="margin-top: 10px; margin-bottom:-10px;" />
+    <div class="col-md-1"></div>
+    <input type="button" value="No" id="btnNo" class="btn btn-default btn-bg col-md-3" style="margin-top: 10px; margin-bottom:-10px;" />
+</div>
+
+@if (ViewBag.VoucheringStlye == 1)
+{
+     @Html.ActionLink("Configure", "VoucherConfiguration", new { id = ViewBag.VoucherConfigurationId }, new { @class = " btn btn-default  btn-bg glyphicon glyphicon-cog" })
+}
+@if(ViewBag.showCreate != "false")
+{
+    <p style="float:right; margin-top:10px;">
+   
+    @Html.ActionLink("Add", "Create", null, new { @class = "btn btn-default  btn-bg glyphicon glyphicon-plus" })
+</p>
+}
+else
+{
+    <p style="float:right; margin-top:10px;">
+   
+        <button id="notActiveAdd" value="Add" class="btn btn-default  btn-bg " style="background-color: rgba(128, 128, 128, 0.5)">
+        <span class="glyphicon glyphicon-plus"></span> Add
+            </button>
+</p> 
+}
+<div id="dialog2" style="display:none">
+    <p>No categories left for document design!</p>
+    <div class="col-md-4"></div>
+    <input type="button" value="Ok" id="btnOk1" class="btn btn-default btn-bg col-md-4" style="margin-top: 10px; margin-bottom:-10px;" />
+</div>
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                <label>Description</label>
+            </th>
+            <th>
+                <label>Type</label>
+            </th>
+            <th>
+                <label>Prefix</label>
+            </th>
+            <th>
+                <label>Suffix</label>
+            </th>
+@if (ViewBag.VoucheringStlye != 1)
+{
+            <th>
+                <label>BodyLength</label>
+            </th>
+            <th>
+                <label>TotalLength</label>
+            </th>
+            <th>
+                <label>StartNo</label>
+            </th>
+            <th>
+                <label>EndNo</label>
+            </th>
+}
+
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="@item.ID">
+                <td>
+                    @(item.Description == null ? "-" : item.Description)
+                </td>
+                <td>
+                    @(item.Category == null ? "-" : item.Category.Name)
+                </td>
+
+                <td>
+                    @(item.Prefix == null ? "-" : item.Prefix)
+                </td>
+                <td>
+                    @(item.Suffix == null ? "-" : item.Suffix)
+                </td>
+@if (ViewBag.VoucheringStlye != 1)
+{
+                <td>
+                    @(item.BodyLength == null ? "-" : (Convert.ToInt32(item.BodyLength).ToString()))
+                </td>
+                <td>
+                    @(item.TotalLength == null ? "-" : (Convert.ToInt32(item.TotalLength).ToString()))
+                </td>
+                <td>
+                    @(item.StartNo == null ? "-" : (Convert.ToInt32(item.StartNo).ToString()))
+                </td>
+                <td>
+                    @(item.EndNo == null ? "-" : (Convert.ToInt32(item.EndNo).ToString()))
+                </td>
+}
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", @title = "Edit" }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
+                   @* @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", @title = "Delete" })*@
+                    <button class="dell" id="delete">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    @section Scripts
+{
+        <script>
+
+           
+            $(document).ready(function () {
+                $('#dialog').show();
+                $('#dialog').dialog({
+                    resizable: true,
+                    //height: 140,
+                    modal: true
+                });
+
+
+
+            });
+          
+            $("#btnOk").click(function (event) {
+                debugger;
+                $('#dialog').remove();
+            });
+
+            $('#notActiveAdd').click(function () {
+                debugger;
+                $('#dialog2').show();
+                $('#dialog2').dialog({
+                    resizable: true,
+                    
+                    modal: true
+                });
+            });
+
+            $("#btnOk1").click(function (event) {
+                debugger;
+                $('#dialog1').remove();
+                location.reload();
+            });
+
+
+            $('.dell').click(function () {
+                var voucherId = $(this).parent().parent().attr('id');
+
+                debugger;
+                $("#btnYes").attr("name", voucherId);
+                debugger;
+                $('#dialog1').show();
+                $('#dialog1').dialog({
+                    resizable: true,
+                    height: 150,
+                    modal: true
+                });
+            });
+            $("#btnYes").click(function (event) {
+                //var categoryId= $('#item_CategoryID').val();
+                //var row = $(this).parent("td").parent('tr');
+
+                debugger;
+                $('#dialog1').remove();
+                var name = $(this).attr('name');
+                //$('#dialog1').hide();
+                $.post('@Url.Action("Delete", "Voucher")', { id: name }, function (result) {
+                    debugger;
+                    alert(result);
+                    //window.location.href = "/Voucher/Index";
+                    location.reload();
+                });
+            });
+            $("#btnNo").click(function (event) {
+                debugger;
+                $('#dialog1').remove();
+                location.reload();
+                //$('.ui-dialog-titlebar').hide();
+
+            });
+        </script>
+    }
